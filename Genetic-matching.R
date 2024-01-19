@@ -2,7 +2,7 @@
    #genetic matching allows exact and non-exact matching based on specified variables
    #this is more robust than other matching techniques
 #this code includes some cleaning and preparation of the data to get it in the best spot for genetic matching
-  #then evaluation of two datasets to insure accuracy of the matched groups
+  #then evaluation of two datasets to ensure accuracy of the matched groups
 
 #Background PACE is a program that starts in HS and provides scholarships to students, usually first gen, 
    #from racial/ethnic minorities, and low-income
