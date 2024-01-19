@@ -1,10 +1,19 @@
+#genetic matching on Salt Lake Community College data
+   #genetic matching allows exact and non-exact matching based on specified variables
+   #this is more robust than other matching techniques
+#this code includes some cleaning and preparation of the data to get it in the best spot for genetic matching
+  #then evaluation of two datasets to insure accuracy of the matched groups
+
+#Background PACE is a program that starts in HS and provides scholarships to students, usually first gen, 
+   #from racial/ethnic minorities, and low-income
+   #Matching PACE students - list provided by PACE - to students pulled from SLCC data warehouse
+#data cleaning and merging happened prior
+
 
 theme_set(theme_bw())
 
 # MATCHING
-# variables to match on:
-# first-generation, age, Pell-grant eligibility, Hispanic,
-# race, gender
+# variables to match on: first-generation, age, Pell-grant eligibility, Hispanic, race, gender
 
 PACE_matching <- PACE_data_rf %>%
     mutate(gender.num = as.numeric(gender),
@@ -44,7 +53,7 @@ View(PACE_matching)
 # add or remove specific rows.
 
 matching.variables.df = bind_rows(
-    list(variable = "gender.num", discrete = T, exact = T, caliper = 0),
+    list(variable = "gender.num", discrete = T, exact = T, caliper = 0), 
     list(variable = "race.num", discrete = T, exact = T, caliper = 0),
     list(variable = "hispanic.num", discrete = T, exact = T, caliper = 0),
     list(variable = "first.gen.num", discrete = T, exact = T, caliper = 0),
@@ -52,7 +61,7 @@ matching.variables.df = bind_rows(
     list(variable = "hs.gpa.imp.ind", discrete = T, exact = T, caliper = 0),
     list(variable = "pell.num", discrete = T, exact = T, caliper = 0),
     list(variable = "ever.con.num", exact = T, discrete = T, caliper =0),
-    list(variable = "age", exact = F, discrete = F, caliper = 0.5),
+    list(variable = "age", exact = F, discrete = F, caliper = 0.5), #exact false doesn't require this variable to be exact, caliper is the allowed difference based on SD 
     list(variable = "first.term.num", exact = F, discrete = F, caliper = 0.5),
     list(variable = "hs.gpa", exact = F, discrete = F, caliper =0.75),
     list(variable = "prior.credits", exact = F, discrete = F, caliper =0.75)
